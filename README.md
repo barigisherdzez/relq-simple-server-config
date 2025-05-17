@@ -272,25 +272,3 @@ Visit in browser:
 | Users configured with roles   | ✅     |
 | HTML site hosted              | ✅     |
 | AWS instance secured          | ✅     |
-
----
-
-## 📊 Presentation Overview
-
-- 5 slides max  
-- Live screen share (5–10 mins)  
-- Explain how security, roles, and services work  
-- Walk through HTML site and logs
-
----
-
-## 🏁 Conclusion
-
-This project demonstrates the practical skills to:
-
-- Build and secure Ubuntu-based servers  
-- Manage users with roles and permissions  
-- Host static content with NGINX  
-- Defend against brute-force attacks (Fail2Ban)  
-- Manage access with SSH and firewall rules  
-- Deploy both **local** and **cloud** servers with security in mind
