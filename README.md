@@ -194,12 +194,12 @@ ssh -i your-key.pem ubuntu@your-ec2-public-ip
 ### 👥 User and Role Management
 
 ```bash
-# Create users
-sudo adduser admin
-sudo adduser webeditor
+# Create user
+sudo adduser cloud_user
 
-# Grant sudo to admin
-sudo usermod -aG sudo admin
+sudo usermod -aG www-data cloud_user
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/
 ```
 
 Edit `/etc/ssh/sshd_config`:
@@ -217,8 +217,7 @@ sudo systemctl restart ssh
 
 | User       | Role        | Permissions         |
 |------------|-------------|---------------------|
-| admin      | Admin       | sudo                |
-| webeditor  | Web Manager | Limited, no sudo    |
+| cloud_user | Web Manager | Limited, no sudo    |
 
 ---
 
@@ -241,23 +240,23 @@ Visit in browser:
 
 ## 📷 Screenshots (Insert Your Own)
 
+- [ ] Create SSH key  
+  ![](screenshots/ssh_key_create.png)
+
 - [ ] SSH login with key  
   ![](screenshots/ssh_key_login.png)
 
-- [ ] FTP test via FileZilla  
+- [ ] FTP test  
   ![](screenshots/ftp_test.png)
 
 - [ ] Website live (NGINX)  
   ![](screenshots/website_nginx.png)
 
-- [ ] UFW port blocked  
-  ![](screenshots/ufw_block80.png)
+- [ ] Fail2Ban  
+  ![](screenshots/fail2ban.png)
 
-- [ ] Fail2Ban log with ban  
-  ![](screenshots/fail2ban_log.png)
-
-- [ ] HTML website (cloud)  
-  ![](screenshots/html_cloud.png)
+- [ ] User Management
+  ![](screenshots/user_management.png)
 
 ---
 
