@@ -1,4 +1,4 @@
-# 🚀 Full Project: Local and Cloud Ubuntu Server Setup for a Startup
+# 🚀 Local and Cloud Ubuntu Server Setup for a Startup
 
 This project demonstrates the setup of a local and cloud-based Ubuntu server infrastructure for a startup. The servers are configured to be secure, manageable, and able to serve a simple website using NGINX. Services such as FTP, SSH, Fail2Ban, and UFW are installed and configured for secure communication and monitoring.
 
@@ -8,11 +8,12 @@ This project demonstrates the setup of a local and cloud-based Ubuntu server inf
 
 ### 🛠️ 1. Virtual Machine Configuration
 
-- **Software:** VirtualBox  
-- **OS:** Ubuntu Server 22.04 LTS  
-- **Network:** Bridged Adapter  
-- **Hostname:** `startup-local-server`  
-- **Main user:** `your_username`
+- **Software:** `VirtualBox`  
+- **OS:** `Ubuntu Server 22.04 LTS`  
+- **Network:** `Bridged Adapter`
+- **Base Memory:** `4 GB`
+- **Storage:** `30 GB`
+- **Processors:** `2`
 
 ### ✅ Setup Goals
 
@@ -40,13 +41,13 @@ sudo systemctl start ssh
 
 ```bash
 ssh-keygen -t rsa -b 4096
-ssh-copy-id your_username@server_ip
+ssh-copy-id server_username@server_ip
 ```
 
 Edit `/etc/ssh/sshd_config`:
 
 ```bash
-sudo nano /etc/ssh/sshd_config
+sudo vim /etc/ssh/sshd_config
 # Update or add the following:
 PasswordAuthentication no
 PermitRootLogin no
@@ -69,11 +70,12 @@ sudo systemctl start vsftpd
 **Configuration:**
 
 ```bash
-sudo nano /etc/vsftpd.conf
+sudo vim /etc/vsftpd.conf
 # Ensure the following:
 write_enable=YES
 local_enable=YES
 chroot_local_user=YES
+anonymous_enable=NO
 ```
 
 Restart:
@@ -142,7 +144,7 @@ Copy and edit configuration:
 
 ```bash
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-sudo nano /etc/fail2ban/jail.local
+sudo vim /etc/fail2ban/jail.local
 ```
 
 Make sure SSH jail is enabled:
@@ -171,8 +173,7 @@ sudo fail2ban-client status sshd
 
 - **Provider:** AWS EC2  
 - **OS:** Ubuntu Server 22.04  
-- **Domain:** (Optional)  
-- **Hostname:** `startup-cloud-server`
+- **Domain:** (Optional)
 
 ---
 
@@ -181,7 +182,7 @@ sudo fail2ban-client status sshd
 1. Launch a new EC2 instance (Ubuntu 22.04)
 2. Choose instance type (e.g., t2.micro for free tier)
 3. Create or use an existing key pair
-4. Enable HTTP, HTTPS, and SSH in the security group
+4. Enable HTTP, HTTPS, FTP, and SSH in the security group
 5. Connect via SSH:
 
 ```bash
